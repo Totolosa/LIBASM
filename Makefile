@@ -1,6 +1,7 @@
 NAME		= libasm.a
 
 SRCS		=	ft_strlen.s \
+				ft_strcmp.s
 				
 OBJS		= ${SRCS:.s=.o}
 
@@ -17,7 +18,7 @@ RM			= rm -f
 all			: ${NAME}
 
 %.o			: %.s libasm.h
-			${NASM} ${ASMFLAGS} ${SRCS}
+			${NASM} ${ASMFLAGS} $< -o $@
 
 ${NAME}		: ${OBJS}
 			ar rcs $@ $^

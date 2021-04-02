@@ -1,3 +1,4 @@
 *.o
 libasm
 libasm.a
+.vscode
