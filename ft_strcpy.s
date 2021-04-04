@@ -1,19 +1,19 @@
-segment .data
+segment .text
 	global _ft_strcpy
 
 _ft_strcpy:
-	mov		rax, rdi
+	mov		rax, 0
 	jmp		copy
 
 copy:
-	mov		al, [rsi]
-	; mov		bl, BYTE [rdi]
-	mov		[rdi], al
-	cmp		al, 0
+	mov		bl, [rsi + rax]
+	cmp		bl, 0
 	je		exit
-	inc		rdi
-	inc		rsi
+	mov		[rdi + rax], bl
+	inc		rax
 	jmp		copy
 
 exit:
+	mov		BYTE [rdi + rax], 0
+	mov		rax, rdi
 	ret
