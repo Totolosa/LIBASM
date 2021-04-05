@@ -1,7 +1,13 @@
-segment .text
-	global _ft_strcpy
+%ifdef	__LINUX__
+    %define DEF_FT_STRCPY ft_strcpy
+%else
+    %define DEF_FT_STRCPY _ft_strcpy
+%endif
 
-_ft_strcpy:
+segment .text
+	global DEF_FT_STRCPY
+
+DEF_FT_STRCPY:
 	mov		rax, 0
 	jmp		copy
 

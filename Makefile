@@ -16,17 +16,23 @@ NAME		= libasm.a
 
 SRCS		=	ft_strlen.s \
 				ft_strcmp.s \
-				ft_strcpy.s
+				ft_strcpy.s \
+				ft_write.s \
+				ft_read.s
 				
 OBJS		= ${SRCS:.s=.o}
 
 CC			= gcc
 
-CFLAGS		= -Wall -Werror -Wextra
+CFLAGS		= -Wall -Werror -Wextra 
 
 NASM			= nasm
 
-ASMFLAGS	= -f macho64
+ifeq ($(shell uname -s),Linux)
+    ASMFLAGS	= -f elf64 -D__LINUX__=1
+else
+	ASMFLAGS	= -f macho64
+endif
 
 RM			= rm -f
 
@@ -40,7 +46,7 @@ ${NAME}		: ${OBJS}
 			echo "${GREEN}--> libasm.a generated <--${END}"
 			
 compil		: ${NAME}
-			${CC} ${CFLAGS} main.c ${NAME} -o libasm
+			${CC} ${CFLAGS} -I. main.c ${NAME} -o libasm
 			echo "${GREEN}--> libasm generated <--${END}"
 
 clean		:

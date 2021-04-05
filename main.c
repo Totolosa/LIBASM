@@ -12,72 +12,65 @@
 
 #include "libasm.h"
 
-void		ft_check_strcpy(void)
+int main()
 {
-	char	str1[] = "Bonjour";
-	char	str2[] = "Hello";
-	char	str3[] = "libc most power full";
-	char	str4[] = "libasm is for the ";
-	char	str5[] = "petit";
-	char	str6[] = "grand";
-	char	str7[] = "";
-	printf("============================================\n");
-	printf("================ Ft_strcpy =================\n");
-	printf("============================================\n\n");
-	printf("\033[36mresultat : libasm\033[00m\n");
-	printf("return : |%s|\n", ft_strcpy(str1, str2));
-	printf("\033[36mresultat : libc\033[00m\n");
-	printf("return : |%s|\n\n", strcpy(str1, str2));
-	printf("\033[36mresultat : libasm\033[00m\n");
-	printf("return : |%s|\n", ft_strcpy(str3, str4));
-	printf("\033[36mresultat : libc\033[00m\n");
-	printf("return : |%s|\n\n", strcpy(str3, str4));
-	printf("\033[36mresultat : libasm\033[00m\n");
-	printf("return : |%s|\n", ft_strcpy(str5, str6));
-	printf("\033[36mresultat : libc\033[00m\n");
-	printf("return : |%s|\n\n", strcpy(str5, str6));
-	printf("\033[36mresultat : libasm\033[00m\n");
-	printf("return : |%s|\n", ft_strcpy(str6, str7));
-	printf("\033[36mresultat : libc\033[00m\n");
-	printf("return : |%s|\n\n", strcpy(str6, str7));
-	printf("\033[36mresultat : libasm\033[00m\n");
-	printf("return : |%s|\n", ft_strcpy(str7, str6));
-	printf("\033[36mresultat : libc\033[00m\n");
-	printf("return : |%s|\n\n", strcpy(str7, str6));
-}
-
-int main(int argc, char **argv)
-{
-	int i;
-	(void)i;
-	(void)argc;
 	setbuf(stdout, NULL);
+	long int ret = 0; 
+	char str1[20] = "0123456789";
+	char str2[20] = "XXXXXXXXXXXXXX";
+	char str3[20] = "XXXXXXXXXXXXX0";
+	char str4[20] = "Aller le stade";
+	#define BUFF_LEN 42
+	char buff[BUFF_LEN];
+	int fd = -1;
+
 	printf("---------------------------\n\tFT_STRLEN\n---------------------------\n");
-	printf("MOI: %d\n", ft_strlen(argv[1]));
-	printf("BIBLI: %lu\n", strlen(argv[1]));
+	printf("MOI:   %d\n", ft_strlen(str1));
+	errno = 0;
+	printf("BIBLI: %lu\n", strlen(str1));
 	printf("\n");
 
 	printf("---------------------------\n\tFT_STRCMP\n---------------------------\n");
-	printf("MOI: %d\n", ft_strcmp(argv[1], argv[2]));
-	printf("BIBLI: %d\n", strcmp(argv[1], argv[2]));
+	printf("MOI:   %d\n", ft_strcmp(str2, str3));
+	printf("BIBLI: %d\n", strcmp(str2, str3));
 	printf("\n");
-
-//	ft_check_strcpy();
 
 	printf("---------------------------\n\tFT_STRCPY\n---------------------------\n");
 	char dest[100] = "XXXXXXXXXXXXXXXXXXX";
-//	const char test[15] = "Aller le stade";
-	// char *dest;
-	// dest = malloc (20);
-	// for (i = 0; i < 20; i++)
-	// 	dest[i] = 'X';
-	// dest[i] = 0;
 	printf("MOI:      dest AVANT = |%s|      ", dest);
-	// dest = ft_strcpy(dest, test);
-	printf("dest APRES = |%s|\n", ft_strcpy(dest, argv[2]));
+	printf("dest APRES = |%s|\n", ft_strcpy(dest, str4));
 	char dest2[100] = "XXXXXXXXXXXXXXXXXXX";
 	printf("BIBLI:    dest AVANT = |%s|      ", dest2);
-	printf("dest APRES = |%s|\n", strcpy(dest2, argv[2]));
+	printf("dest APRES = |%s|\n", strcpy(dest2, str4));
+	printf("\n");
+
+	
+	printf("---------------------------\n\tFT_WRITE\n---------------------------\n");
+	printf("MOI:     ");
+	errno = 0;
+	printf("     ret = %ld\n", ret = ft_write(fd, str4, ft_strlen(str4)));
+	if (ret == -1)
+		perror("ERROR");
+	printf("BIBLI:   ");
+	errno = 0;
+	printf("     ret = %ld\n", ret = write(fd, str4, ft_strlen(str4)));
+	if (ret == -1)
+		perror("ERROR");
+	printf("\n");
+
+	printf("---------------------------\n\tFT_READ\n---------------------------\n");
+	printf("MOI:     ");
+	fd = open("test.txt", O_RDONLY);
+	printf("fd = %d\n", fd);
+	errno = 0;
+	printf("     ret = %ld\n", ret = ft_read(fd, buff, BUFF_LEN));
+	if (ret == -1)
+		perror("ERROR");
+	printf("BIBLI:   ");
+	errno = 0;
+	printf("     ret = %ld\n", ret = read(fd, buff, BUFF_LEN));
+	if (ret == -1)
+		perror("ERROR");
 	printf("\n");
 
 	return (0);

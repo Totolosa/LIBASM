@@ -1,7 +1,13 @@
-segment	.text
-	global _ft_strcmp
+%ifdef	__LINUX__
+    %define DEF_FT_STRCMP ft_strcmp
+%else
+    %define DEF_FT_STRCMP _ft_strcmp
+%endif
 
-_ft_strcmp:
+segment	.text
+	global DEF_FT_STRCMP
+
+DEF_FT_STRCMP:
 	mov		rax, 0
 	jmp		compare
 
