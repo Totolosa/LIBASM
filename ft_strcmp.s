@@ -11,19 +11,19 @@ segment	.text
 										;		OPERATION					EXPLICATION
 DEF_FT_STRCMP:
 	mov		rax, 0						; rax = 0					init var to return at 0
-	mov		rbx, 0						; rbx = 0					init register rbx to 0
+	mov		r8, 0						; rbx = 0					init register rbx to 0
 	jmp		compare						; 							go to function compare
 
 compare:
-	mov		al, BYTE [rdi + rbx]		; al = *(rdi + rbx)			put the caracter of rdi at the index rbx on the register al (8 bits register)
-	mov		bl, BYTE [rsi + rbx]		; bl = *(rsi + rbx)			put the caracter of rsi at the index rbx on the register bl (8 bits register)
+	mov		al, BYTE [rdi + r8]		; al = *(rdi + rbx)			put the caracter of rdi at the index r8 on the register al (8 bits register)
+	mov		bl, BYTE [rsi + r8]		; bl = *(rsi + rbx)			put the caracter of rsi at the index r8 on the register bl (8 bits register)
 	cmp		al, 0						; al - 0 = ?				compare value in register al with 0
 	je		exit						; if (al = 0) -> exit		if al egual to 0 -> go to exit
 	cmp		bl, 0						; bl - 0 = ?				compare value in register bl with 0
 	je		exit						; if (bl = 0) -> exit		if bl egual to 0 -> go to exit
 	cmp		al, bl						; al - bl = ?				compare value in register al with value in register bl
 	jne		exit						; if (al != bl) -> exit		if al not egual to bl, go to exit
-	inc		rbx							; rbx++						increment rbx
+	inc		r8							; rbx++						increment r8
 	jmp		compare						;							go to begin of function compare --> loop
 
 exit:

@@ -26,6 +26,8 @@ OBJS		= ${SRCS:.s=.o}
 CC			= gcc
 
 CFLAGS		= -Wall -Werror -Wextra #-fsanitize=address -g3
+# CFLAGS		= -Wall -Werror -Wextra -fsanitize=address -g3
+# CFLAGS		= -Wall -Werror -Wextra -g3
 
 NASM			= nasm
 
@@ -60,5 +62,5 @@ fclean		: clean
 
 re			: fclean all
 
-.PHONY: 	clean fclean all re compil 
+.PHONY: 	clean fclean all re compil
 .SILENT:	clean fclean all re compil ${OBJS} ${NAME}
