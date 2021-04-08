@@ -6,7 +6,7 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 18:46:05 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/07 21:17:34 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/08 11:06:50 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ void check_read()
 	if (ret == -1)
 		perror("ERROR");
 	errno = 0;
-	printf("\n\033[1m\033[33m%s\033[0m on \033[1m\033[33m%s\033[0m:\n", "Read", "file tests/write.txt");
+	printf("\n\033[1m\033[33m%s\033[0m on \033[1m\033[33m%s\033[0m:\n", "Read", "files tests/*.txt");
 	printf("	> MOI:     |");
 	printf("|     ret = \033[32m|%ld|\033[0m\n", ret = ft_read(fd_me, buff, BUFF_LEN));
 	if (ret == -1)
@@ -180,17 +180,17 @@ void check_strdup()
 int main(int argc, char **argv)
 {
 	setbuf(stdout, NULL);
-	if (argc == 1 || !ft_strcmp(argv[1], "ft_strlen"))
+	if (argc == 1 || !ft_strcmp(argv[1], "strlen"))
 		check_strlen();
-	if (argc == 1 || !ft_strcmp(argv[1], "ft_strcmp"))
+	if (argc == 1 || !ft_strcmp(argv[1], "strcmp"))
 		check_strcmp();
-	if (argc == 1 || !ft_strcmp(argv[1], "ft_strcpy"))
+	if (argc == 1 || !ft_strcmp(argv[1], "strcpy"))
 		check_strcpy();
-	if (argc == 1 || !ft_strcmp(argv[1], "ft_write"))
+	if (argc == 1 || !ft_strcmp(argv[1], "write"))
 		check_write();
-	if (argc == 1 || !ft_strcmp(argv[1], "ft_read"))
+	if (argc == 1 || !ft_strcmp(argv[1], "read"))
 		check_read();
-	if (argc == 1 || !ft_strcmp(argv[1], "ft_strdup"))
+	if (argc == 1 || !ft_strcmp(argv[1], "strdup"))
 		check_strdup();
 	return (0);
 }
