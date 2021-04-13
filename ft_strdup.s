@@ -47,5 +47,5 @@ copy:
 	ret
 
 error:
-	mov				rax, 3
+	mov				rax, 0
 	ret
